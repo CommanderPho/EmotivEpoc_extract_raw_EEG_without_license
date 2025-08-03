@@ -45,7 +45,7 @@ def Extract_EEG(image) : # This extracts 1 second of EEG data from 14 electrodes
                 continue
             brightness_values = column[y_indices]
             darkness_weights = 255 - brightness_values
-            weighted_y = np.sum((y_indices-25) * darkness_weights) / np.sum(darkness_weights)
+            weighted_y = np.sum((y_indices-y_half_width ) * darkness_weights) / np.sum(darkness_weights)
             y_values.append(weighted_y)
         df_EEG[:,i] = y_values
 
