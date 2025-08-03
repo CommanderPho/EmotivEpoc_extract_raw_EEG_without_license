@@ -15,7 +15,7 @@ measurement_duration = 1 # Specify the duration of the measurement in seconds
 x_range = (1526,1667) # 8 to 9 seconds
 y_axis = [140,193,246,299,352,406,458,512,565,617,670,724,777,830] # y=0 reference pixel
 y_half_width = 25 # half of y width
-electrodes = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4'] # from to top
+electrodes = ['AF3', 'F7', 'F3', 'FC5', 'T7', 'P7', 'O1', 'O2', 'P8', 'T8', 'FC6', 'F4', 'F8', 'AF4'] # from the top
 
 # Note: This information may vary depending on your monitor size and Emotiv PRO version.
 def Extract_EEG(image) : # This extracts 1 second of EEG data from 14 electrodes.
