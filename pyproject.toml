@@ -1,0 +1,7 @@
+[project]
+name = "emotivepoc-extract-raw-eeg-without-license"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pyautogui>=0.9.54",
+]
