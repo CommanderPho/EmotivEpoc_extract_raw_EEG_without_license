@@ -1,6 +1,6 @@
 [project]
 name = "emotivepoc-extract-raw-eeg-without-license"
-version = "0.1.0"
+version = "0.1.1"
 requires-python = ">=3.11"
 dependencies = [
     "matplotlib>=3.10.6",
@@ -12,6 +12,7 @@ dependencies = [
     "pyautogui>=0.9.54",
     "pygetwindow>=0.0.9",
     "vidgear[asyncio]>=0.3.4",
+    "dxcam; sys_platform == 'win32' and platform_machine == 'AMD64'",
 ]
 
 [tool.pixi.workspace]

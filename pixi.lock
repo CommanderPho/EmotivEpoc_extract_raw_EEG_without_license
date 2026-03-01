@@ -38,11 +38,13 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/6d/c1/e419ef3723a074172b68aaa89c9f3de486ed4c2399e2dbd8113a4fdcaf9e/colorlog-6.10.1-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/03/2f/ca9029d5da14b5a3a103d6061149a4a94a54ab848f56c7d2809dbb36f48c/comtypes-1.4.15-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/7d/c2/57f54b03d0f22d4044b8afb9ca0e184f8b1afd57b4f735c2fa70883dc601/contourpy-1.3.3-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/e9/5a/ac0f49e48063ab4255d9e3b79f5def51697fce1a95ea1370f03dc9db76f6/cryptography-46.0.5-cp311-abi3-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/79/2e/1388fc0243240cd54994bb74f26aaaf3b2e22f89d3a2cf8da06d75d46ca2/cython-3.2.4-cp314-cp314-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/ba/5a/18ad964b0086c6e62e2e7500f7edc89e3faa45033c71c1893d34eed2b2de/dnspython-2.8.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/b1/2a/734b2e9700708beedaa12984a09f7f2544b507ff5da10c39955e4a7bf0e2/dxcam-0.0.5-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/9c/cf/27d1f4b3bae5e566f94fc716e048120128cf603d5163638d22bcd0fc92d8/EasyProcess-1.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/42/ee/84c8990b08efa0265bd10fc8781ef26e3157715bf0dfa47ee3c056b513d4/entrypoint2-1.1-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/52/7b/91e7b01e37cc8eb0e1f770d08305b3655e4f002fc160fb82b3390eabacf5/fonttools-4.61.1-cp314-cp314-win_amd64.whl
@@ -208,6 +210,11 @@ packages:
   - pytest ; extra == 'development'
   - types-colorama ; extra == 'development'
   requires_python: '>=3.6'
+- pypi: https://files.pythonhosted.org/packages/03/2f/ca9029d5da14b5a3a103d6061149a4a94a54ab848f56c7d2809dbb36f48c/comtypes-1.4.15-py3-none-any.whl
+  name: comtypes
+  version: 1.4.15
+  sha256: cda90486de8762ec57d7ce04e68721920911f3f03415cb29afdf7609c427c7e3
+  requires_python: '>=3.9'
 - pypi: https://files.pythonhosted.org/packages/7d/c2/57f54b03d0f22d4044b8afb9ca0e184f8b1afd57b4f735c2fa70883dc601/contourpy-1.3.3-cp314-cp314-win_amd64.whl
   name: contourpy
   version: 1.3.3
@@ -308,14 +315,23 @@ packages:
   - trio>=0.30 ; extra == 'trio'
   - wmi>=1.5.1 ; sys_platform == 'win32' and extra == 'wmi'
   requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/b1/2a/734b2e9700708beedaa12984a09f7f2544b507ff5da10c39955e4a7bf0e2/dxcam-0.0.5-py3-none-any.whl
+  name: dxcam
+  version: 0.0.5
+  sha256: c992fef7c381000e970b4564d265925f0cead4eae10489e79b2c1e7b250ebd86
+  requires_dist:
+  - numpy
+  - opencv-python
+  - comtypes
+  requires_python: '>=3.7'
 - pypi: https://files.pythonhosted.org/packages/9c/cf/27d1f4b3bae5e566f94fc716e048120128cf603d5163638d22bcd0fc92d8/EasyProcess-1.1-py3-none-any.whl
   name: easyprocess
   version: '1.1'
   sha256: 82eed523a0a5eb12a81fa4eacd9f342caeb3f900eb4b798740e6696ad07e63f9
 - pypi: ./
   name: emotivepoc-extract-raw-eeg-without-license
-  version: 0.1.0
-  sha256: 934527808673e6cff3e5e43aa98123b3c872dd15c818fdbd2e97543b90114a56
+  version: 0.1.1
+  sha256: 00aab11d78a1ef57705fb581ca562e0c91c877d3f1ef37c400c0c4ecbdde3d35
   requires_dist:
   - matplotlib>=3.10.6
   - numpy>=2.3.2
@@ -326,6 +342,7 @@ packages:
   - pyautogui>=0.9.54
   - pygetwindow>=0.0.9
   - vidgear[asyncio]>=0.3.4
+  - dxcam ; platform_machine == 'AMD64' and sys_platform == 'win32'
   requires_python: '>=3.11'
 - pypi: https://files.pythonhosted.org/packages/42/ee/84c8990b08efa0265bd10fc8781ef26e3157715bf0dfa47ee3c056b513d4/entrypoint2-1.1-py2.py3-none-any.whl
   name: entrypoint2
