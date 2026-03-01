@@ -3,5 +3,22 @@ name = "emotivepoc-extract-raw-eeg-without-license"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
+    "matplotlib>=3.10.6",
+    "numpy>=2.3.2",
+    "opencv-contrib-python>=4.13.0.92",
+    "opencv-python>=4.13.0.92",
+    "opencv-python-headless>=4.13.0.92",
+    "pandas>=2.3.2",
     "pyautogui>=0.9.54",
+    "pygetwindow>=0.0.9",
+    "vidgear[asyncio]>=0.3.4",
 ]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["win-64"]
+
+[tool.pixi.pypi-dependencies]
+emotivepoc-extract-raw-eeg-without-license = { path = ".", editable = true }
+
+[tool.pixi.tasks]

@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import time
 import pyautogui
+import pygetwindow as gw
+from pathlib import Path
 
 # You must manually provide pixel position information for the 14 electrode graphs
 # as they stream in real time on the Emotiv PRO screen.
@@ -53,29 +55,52 @@ def Extract_EEG(image) : # This extracts 1 second of EEG data from 14 electrodes
 
     return df_EEG
 
-print('Delay for 2 seconds. Display the Raw EEG graph in the Emotiv PRO software.')
-time.sleep(2)
-print('Start')
 
-num_file = 1
-while num_file <= measurement_duration:
-    start_time = time.time()
+def capture_screenshot(screenshot_path="window_screenshot.png"):
 
-    df_EEG_extracted = Extract_EEG(pyautogui.screenshot())
 
-    df_EEG_extracted.columns = electrodes
-    df_EEG_extracted.to_csv(f"data/EEG_{num_file}.csv", index=False)
-    print(f'File #{num_file} has been saved successfully')
-    num_file += 1
+    window = gw.getWindowsWithTitle("EmotivPro")[0]
+    print(f'window: {window}')
+    # window = gw.getWindowsWithTitle("EmotivPro 4.7.3.581")[0]
+    x, y, w, h = window.left, window.top, window.width, window.height
+    screenshot = pyautogui.screenshot(region=(x, y, w, h))
+    screenshot.save(screenshot_path)
 
-    # Use the following visualization code to check whether you have entered the pixel information correctly.
-    """
-    plt.figure(figsize=(12, 8))
-    for i in range(14):
-        plt.plot(range(x_range[1] - x_range[0] + 1), list(df_EEG_extracted.iloc[:, i]), label=f'Graph {i + 1}')
-    plt.legend()
-    plt.show()
-    """
 
-    elapsed_time = time.time() - start_time
-    time.sleep(max(0, 1 - elapsed_time))
+def run_main():
+    print('Delay for 2 seconds. Display the Raw EEG graph in the Emotiv PRO software.')
+    time.sleep(2)
+    print('Start')
+
+    num_file = 10
+    while num_file <= measurement_duration:
+        start_time = time.time()
+
+        df_EEG_extracted = Extract_EEG(pyautogui.screenshot())
+
+        df_EEG_extracted.columns = electrodes
+        df_EEG_extracted.to_csv(f"data/EEG_{num_file}.csv", index=False)
+        print(f'File #{num_file} has been saved successfully')
+        num_file += 1
+
+        # Use the following visualization code to check whether you have entered the pixel information correctly.
+        """
+        plt.figure(figsize=(12, 8))
+        for i in range(14):
+            plt.plot(range(x_range[1] - x_range[0] + 1), list(df_EEG_extracted.iloc[:, i]), label=f'Graph {i + 1}')
+        plt.legend()
+        plt.show()
+        """
+
+        elapsed_time = time.time() - start_time
+        time.sleep(max(0, 1 - elapsed_time))
+
+
+
+if __name__ == '__main__':
+    print(f'running main.')
+    # screenshots_folder = Path('data/screenshots')
+    # screenshots_folder.mkdir(exist_ok=True)
+    # a_screenshot_path = screenshots_folder.joinpath('emotiv_pro.png')
+    # capture_screenshot(a_screenshot_path)
+    run_main()
