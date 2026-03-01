@@ -1,0 +1,7 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+emotivepoc_extract_raw_eeg_without_license.egg-info
+data/screenshots
+window_screenshot.png
+data/EEG_1.csv
