@@ -8,3 +8,6 @@ data/screenshots
 window_screenshot.png
 data/EEG_1.csv
 .cursor/rules/derived-cursor-rules.mdc
+data/recordings
+.cursor/plans
+data

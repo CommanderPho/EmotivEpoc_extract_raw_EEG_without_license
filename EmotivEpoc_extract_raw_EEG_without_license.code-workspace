@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../continuous_video_recorder"
+		}
+	],
+	"settings": {}
+}
